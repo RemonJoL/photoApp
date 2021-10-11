@@ -1,0 +1,24 @@
+
+
+// ----------------------------------------------
+// Page Structure
+// ----------------------------------------------
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+section {
+  width: 100%;
+  display: flex;
+}
+
+#header, #footer {
+  background: #F9E1BD;
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 20px;
+}
