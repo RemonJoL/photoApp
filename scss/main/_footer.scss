@@ -1,0 +1,18 @@
+@use "utility/colours";
+@use "utility/text";
+// ----------------------------------------------
+// Footer
+// ----------------------------------------------
+
+#footer {
+  padding: 15px 0;
+  @include text.other-text;
+
+  @media (min-width:768px) {
+    padding: 20px 0;
+  }
+
+  @media (min-width:1200px) {
+    padding: 25px 0;
+  }
+}

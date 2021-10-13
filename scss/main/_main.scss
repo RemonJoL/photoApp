@@ -1,5 +1,5 @@
-
-
+@use "utility/colours";
+@use "utility/text";
 // ----------------------------------------------
 // Page Structure
 // ----------------------------------------------
@@ -8,9 +8,19 @@
   box-sizing: border-box;
 }
 
+html, body {
+  padding: 0;
+  margin: 0;
+  @include text.other-text;
+}
+
+.page-full {
+}
+
 section {
   width: 100%;
   display: flex;
+  position: relative;
 }
 
 #header, #footer {
@@ -21,4 +31,18 @@ section {
   display: flex;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
+
+  @media (min-width:768px) {
+    padding: 0 40px;
+  }
+
+  @media (min-width:1200px) {
+    padding: 0 80px;
+  }
+
+  @media (min-width:1400px) {
+    width: 1200px;
+    padding: 0 auto;
+  }
 }

@@ -1,0 +1,54 @@
+@use "utility/colours";
+
+// ----------------------------------------------
+// Main Content
+// ----------------------------------------------
+
+main {
+  margin: 30px 0;
+
+  @media (min-width:480px) {
+    margin: 50px 0;
+  }
+}
+
+.main-inner {
+
+}
+
+.img-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.img-container img {
+  width: 100%;
+}
+
+.button-container {
+  display: block;
+
+  @media (min-width:768px) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.assign-button {
+  margin: 5px 0;
+
+    @media (min-width:768px) {
+      margin: 0;
+    }
+}
+
+.img-control-button {
+
+  @media (min-width:768px) {
+    display: flex;
+    width: 49%;
+    margin: 5px 0 0;
+  }
+}

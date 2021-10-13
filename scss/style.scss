@@ -2,11 +2,17 @@
 // Utility
 // ----------------------------------------------
 
-@use "utility/images"
-@use "utility/text"
+@use "utility/images";
+@use "utility/text";
+@use "utility/buttons";
+@use "utility/colours";
 
 // ----------------------------------------------
 // Main
 // ----------------------------------------------
 
-@use "main/main"
+@use "main/main";
+@use "main/header";
+@use "main/main-content";
+@use "main/footer";
+@use "main/email-popup";
