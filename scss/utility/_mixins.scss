@@ -1,0 +1,44 @@
+@use "utility/colours";
+
+// ----------------------------------------------
+// Mixins
+// ----------------------------------------------
+
+@mixin button-highlight {
+  box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+@mixin container {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+
+  @media (min-width:768px) {
+    padding: 0 40px;
+  }
+
+  @media (min-width:1200px) {
+    padding: 0 80px;
+  }
+
+  @media (min-width:1400px) {
+    width: 1200px;
+    padding: 0;
+  }
+}
+
+@mixin profile-header-footer {
+  flex-direction: column;
+  padding: 5px;
+  background: #F9E1BD;
+  box-shadow: 0px 5px 10px rgb(0 0 0 / 40%);
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  text-align: center;
+}
+
+@mixin flex100 {
+  display: flex;
+  width: 100%;
+}

@@ -6,13 +6,16 @@
 @use "utility/text";
 @use "utility/buttons";
 @use "utility/colours";
+@use "utility/mixins";
 
 // ----------------------------------------------
 // Main
 // ----------------------------------------------
 
-@use "main/main";
 @use "main/header";
 @use "main/main-content";
 @use "main/footer";
 @use "main/email-popup";
+@use "main/burger-menu";
+@use "main/userprofile";
+@use "main/main";

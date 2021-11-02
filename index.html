@@ -11,45 +11,65 @@
   </head>
   <body>
     <div class="page-full">
-      <div class="email-overlay">
-        <div class="email-popup">
-          <div class="email-popup-inner">
-            <div class="btn-close-container">
-              <div class="btn-close btn-text" onclick="closeOverlay()">
-                X
-              </div>
-            </div>
 
-            <div class="textfield-container">
-              <label for="email"><h2>Enter E-mail Address:</h2></label>
-              <fieldset>
-                <form class="email-field" action="index.html" method="post" name="email">
+      <div class="overlay">
+      </div>
 
-                </form>
-              </fieldset>
-            </div>
-
-            <div class="popup-button-container">
-              <div class="btn popup-btn btn-cancel" onclick="closeOverlay()">Cancel
-
-              </div>
-              <div class="btn popup-btn btn-assign">Assign to email!
-
-              </div>
-
+      <div class="burgermenu-container">
+        <div class="burger-menu">
+          <div class="burgermenu-btn-close-container">
+            <div class="btn-close btn-close-menu btn-text">
+              X
             </div>
           </div>
+          <div class="burgermenu-logo-container">
+            <img class="burgermenu-logo home-btn" src="/img/pic&postlogo2shadow.png" alt="">
+          </div>
+          <ul class="burger-list">
+            <li class="burger-header home-btn">Home</li>
+            <li class="burger-header">E-mail Addresses</li>
+          </ul>
 
         </div>
 
       </div>
+
+      <div class="email-popup">
+        <div class="email-popup-inner">
+          <div class="btn-close-container">
+            <div class="btn-close btn-close-popup btn-text">
+              X
+            </div>
+          </div>
+
+          <div class="textfield-container">
+          <label for="email">Enter E-mail Address:</label>
+            <form class="email-form" name="emailForm" action="index.html" method="post">
+                <input id="email" class="email-field" type="text" name="emailInput" value="" oninput="emailValidation(document.emailForm.emailInput)">
+                <p class="emailDecline email-confirmation confirm-hide">&#x274C;</p>
+                <p class="emailAccept email-confirmation confirm-hide">&#x2714;</p>
+            </form>
+          </div>
+
+          <div class="popup-confirmation-container">
+            <p class="confirmation-text">placeholder</p>
+          </div>
+
+          <div class="popup-button-container">
+            <div class="btn popup-btn btn-cancel">Close</div>
+            <div class="btn popup-btn btn-assign">Assign to email!</div>
+          </div>
+        </div>
+      </div>
+
       <header>
         <section id="header">
           <div class="container">
             <div class="header-inner">
-              <a href="index.html"><img class="header-logo" src="/img/pic&postlogo2.png" alt=""></a>
+              <img class="header-logo home-btn" src="/img/pic&postlogo2.png" alt="">
               <div class="menu-container">
                 <div class="menu-btn">
+                  <div class="red-dot"></div>
                   <span class="burger-btn"></span>
                   <span class="burger-title btn-text">menu</span>
                 </div>
@@ -62,11 +82,20 @@
         <section id="main">
           <div class="container">
             <div class="main-inner">
-              <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
-                <!-- <img src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
-                <img src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
-                <img src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt=""> -->
+              <div class="unsplash-container">
+                <div class="img-container">
+                  <img class="randomg-img" src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+                </div>
+                <div class="img-info">
+                  <div class="img-photographer-container">
+                    <img class="img-avatar" src="#" alt="">
+                    <a class="photographer-profile" href="" target="_blank"><p class="img-photographer">photographer</p></a>
+                  </div>
+                  <div class="unsplash-link">
+                    <img class="unsplash-logo" src="/img/Unsplash_Symbol.png" alt="">
+                    <a class="img-link" href="" target="_blank"><p>View image on Unsplash</p></a>
+                  </div>
+                </div>
               </div>
               <div class="button-container">
                 <div class="img-control-button assign-button">
@@ -88,11 +117,47 @@
       <footer>
         <section id="footer">
           <div class="container">
-            &copy; <script type="text/javascript">document.write( new Date().getFullYear() );</script> Remon Jansen of Lorkeers.
+            &copy; <script>document.write( new Date().getFullYear() );</script> Remon Jansen of Lorkeers.
           </div>
         </section>
       </footer>
     </div>
+
+
+    <div id="assignedPictures" class="profile-page">
+
+      <div class="profile-header-container">
+        <div class="profile-header-inner">
+          <h3>Pictures Assigned to email:</h3>
+        </div>
+      </div>
+      <div class="user-container">
+        <div class="main-inner inner-profile">
+          <div class="unsplash-container">
+            <div class="img-container">
+              <img class="user-img" src="https://images.unsplash.com/photo-1633933875390-f8969840d2f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+            </div>
+            <div class="img-info">
+              <div class="img-photographer-container">
+                <img class="user-img-avatar" src="#" alt="">
+                <a class="user-photographer-profile" href="" target="_blank"><p class="user-img-photographer">photographer</p></a>
+              </div>
+              <div class="unsplash-link">
+                <img class="unsplash-logo" src="/img/Unsplash_Symbol.png" alt="">
+                <a class="user-img-link" href="" target="_blank"><p>View image on Unsplash</p></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-footer-container">
+        <div class="profile-footer-inner home-btn">
+          <h3>Back to Main Page</h3>
+        </div>
+      </div>
+    </div>
     <script src="/js/main.js"></script>
+    <script>
+    </script>
   </body>
 </html>

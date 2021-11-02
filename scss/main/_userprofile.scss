@@ -1,0 +1,90 @@
+@use "utility/colours";
+@use "utility/text";
+@use "utility/mixins";
+// ----------------------------------------------
+// User Profile Structure
+// ----------------------------------------------
+
+.profile-page {
+  display: none;
+}
+
+.profile-header-container {
+  @include mixins.container;
+  flex-direction: column;
+}
+
+.profile-header-inner {
+  @include mixins.profile-header-footer;
+  @include mixins.flex100;
+}
+
+.inner-profile {
+  margin-top: 20px;
+}
+
+.user-container {
+  @include mixins.container;
+  flex-direction: column;
+}
+
+.profile-footer-container {
+  @include mixins.container;
+  flex-direction: column;
+}
+
+.profile-footer-inner {
+  @include mixins.profile-header-footer;
+  @include mixins.flex100;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+// ----------------------------------------------
+// User Image
+// ----------------------------------------------
+
+.user-img {
+  height: 200px;
+  max-width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+
+  @media (min-width:768px) {
+    height: 500px;
+  }
+
+  @media (min-width:768px) {
+    height: 600px;
+  }
+}
+
+// ----------------------------------------------
+// User Profile Info
+// ----------------------------------------------
+
+.user-img-avatar {
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.user-photographer-profile {
+  display: flex;
+}
+
+.user-photographer-profile:hover {
+  text-decoration: underline;
+}
+
+.user-img-photographer {
+  display: flex;
+  align-items: center;
+}
+
+.user-img-link {
+  width: 100%;
+}
+
+.user-img-link:hover {
+  text-decoration: underline;
+}

@@ -1,10 +1,11 @@
 @use "utility/colours";
 @use "utility/text";
+@use "utility/mixins";
 // ----------------------------------------------
-// Footer
+// Email popup
 // ----------------------------------------------
 
-.email-overlay {
+.overlay {
   display: none;
   position: absolute;
   background: rgba(0,0,0,0.25);
@@ -19,24 +20,25 @@
 }
 
 .email-popup {
-  background-image: url("/img/popup-background.jpg");
+  display: none;
+  background-image: url("/img/popup-background.svg");
   background-size: cover;
-  width: 290px;
+  width: 297px;
   background-repeat: no-repeat;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  margin: auto;
-  opacity: 0;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0px);
   transition: all 0.3s;
 
   @media (min-width:480px) {
-    width: 440px;
+    width: 470px;
   }
 
   @media (min-width:768px) {
     width: 600px;
-  }
-
-  @media (min-width:1200px) {
   }
 }
 
@@ -45,8 +47,10 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  height: 148px;
 
   @media (min-width:480px) {
+    height: 235px;
   }
 
   @media (min-width:768px) {
@@ -54,78 +58,100 @@
   }
 }
 
+// ----------------------------------------------
+// Email Textfield
+// ----------------------------------------------
+
 .textfield-container {
+  text-align: center;
   margin: 0 10px;
 
   @media (min-width:480px) {
-    margin: 33px 10px;
+    margin: 42px 10px;
   }
 
   @media (min-width:768px) {
     margin: 0 10px;
   }
-
-  @media (min-width:1200px) {
-  }
 }
 
-.popup-button-container {
+.email-form  {
+  position: relative;
+}
+
+.email-field {
   width: 100%;
-  display: flex;
-}
-
-.popup-btn {
-  width: 50%;
-  margin: 10px;
-  font-size: 1rem;
+  border: 0px;
+  border-bottom: 1px solid black;
+  margin: 0;
+  padding: 0;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   @media (min-width:480px) {
-    font-size: 1.5rem;
+  margin: 10px 0;
   }
 
   @media (min-width:768px) {
-    // margin: 20px;
+    font-size: 1.2rem;
+  }
+}
+
+.email-field:focus{
+  outline: 0;
+  border: 0;
+  border-bottom: 1px solid black;
+}
+
+// ----------------------------------------------
+// Email Confirmation text
+// ----------------------------------------------
+
+.popup-confirmation-container {
+  text-align: center;
+}
+
+.confirmation-text {
+  margin: 0;
+  margin-top: -5px;
+  visibility: hidden;
+  color: black;
+  font-size: 0.75rem;
+
+  @media (min-width:480px) {
+    margin-top: -35px;
+    font-size: 1rem;
   }
 
-  @media (min-width:1200px) {
+  @media (min-width:768px) {
+    margin-top: -25px;
+  }
+}
+
+.confirm-show {
+  display: block;
+}
+
+.confirm-hide {
+  display: none;
+}
+
+// ----------------------------------------------
+// Email Buttons
+// ----------------------------------------------
+
+.popup-button-container {
+  @include mixins.flex100;
+
+  @media (min-width:480px) {
+    margin: 6px 0px;
+  }
+
+  @media (min-width:768px) {
+    margin: 0px 0px 10px;
   }
 }
 
 .btn-close-container {
   display: flex;
   justify-content: flex-end;
-}
-
-.btn-close {
-  background: colours.$red;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0 2px;
-  border: 1px solid #222;
-  color: #444;
-  border-radius: 3px;
-  margin: 2px;
-  @include text.btn-text;
-
-  @media (min-width:480px) {
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-  }
-
-  @media (min-width:768px) {
-    font-size: 1.75rem;
-    line-height: 2rem;
-    padding: 0 5px;
-    margin: 5px;
-  }
-
-  @media (min-width:1200px) {
-  }
-}
-
-.email-field {
 }
