@@ -105,5 +105,5 @@ label {
 }
 
 .photographer-profile {
-  @include mixins.flex100;
+  display: flex;
 }

@@ -17,7 +17,7 @@ for(let i=0;i<burgerToggleArray.length;i++){
 // Toggles Burger menu
 function bugermenuToggle() {
   // If the Burger menu not currently visible
-  if (burgermenu.classList.value === "burgermenu-container") {
+  if (burgermenu.classList.length === 1) {
     // Makes burger menu visible and after a short delay, it slides it into place, overlay fades in and the red dot disappears if there is one
     burgermenu.style.display = "flex";
     setTimeout(function(){
@@ -98,36 +98,39 @@ const imgLink = document.querySelector('.img-link');
 const imgAvatar = document.querySelector('.img-avatar');
 // Declares empty object to have data be assigned to it, and then to be used by other functions
 let obj;
+let randomImage;
+let avatarUrl;
+let photographerProfile;
+let responseObj;
+
+// Button that requests new image from unsplash
+newImgBtn.addEventListener('click', getNewImage);
 
 // Function that requests a new image from unsplash and assigns data from the object created in the fetch request to variables,
 // which are then used in the functions that assign the picture to its correct place, both on the main page and on any profiles it is to be assigned to
-newImgBtn.addEventListener('click', async function() {
-  // Awaits data to be provided by fetch request
-  await getNewImage();
-  // Assigns data from the obj object to variables to be used in further functions and to assign the picture to the main page
-  let randomImage = obj.urls.regular;
-  let avatarUrl = obj.user.profile_image.small;
-  let photographerProfile = obj.user.links.html;
-  // Sets photographer name to be displayed under picture
-  imgInfo.innerHTML = obj.user.name;
-  // Sets picture link to be displayed under picture
-  imgLink.href = obj.links.html;
-  // Sets photographer avatar to be displayed under picture
-  imgAvatar.src = avatarUrl;
-  // Sets profile to be displayed in link under picture
-  userInfo.href = photographerProfile;
-  // Sets the fetched picture on the main page
-  newImg.src = randomImage;
-});
-
-// Fetches a new random image
-async function getNewImage() {
-  // Fetches random image from unsplash and returns its data
-  return fetch(requestUrl)
-    // Converts the picture data to json
-    .then( (response) => response.json() )
-    // Converts the json data to an object that contains the picture data, which can then used for adding the picture to a profile
-    .then( data => obj = data )
+function getNewImage() {
+  // Picture request
+  axios.get('https://api.unsplash.com/photos/random?client_id=Eixsm88TabftaZDIofWlQslifc0D_FoHW_lwUw5ERkk')
+  // Takes the picture response and stores the data associated with the picture in an object
+  .then(function (response) {
+    obj = response.data;
+  })
+  // Assigns the data from the picture to the picture card
+  .then(function () {
+    randomImage = obj.urls.regular;
+    avatarUrl = obj.user.profile_image.small;
+    photographerProfile = obj.user.links.html;
+    // Sets photographer name to be displayed under picture
+    imgInfo.innerHTML = obj.user.name;
+    // Sets picture link to be displayed under picture
+    imgLink.href = obj.links.html;
+    // Sets photographer avatar to be displayed under picture
+    imgAvatar.src = avatarUrl;
+    // Sets profile to be displayed in link under picture
+    userInfo.href = photographerProfile;
+    // Sets the fetched picture on the main page
+    newImg.src = randomImage;
+  });
 }
 
 // ----------------------------------------------
@@ -337,41 +340,39 @@ document.querySelector(".btn-assign").addEventListener("click", function(){
 const confirmationText = document.querySelector(".confirmation-text");
 
 // Displays confirmation message after assigning image to profile, and checks if picture can be assigned to email in input
-function assignConfirmation(assignCheck, i){
+function assignConfirmation(assignCheck, i) {
   // If the picture can be assigned and a valid email address has been entered
   if (assignCheck === true && emailCheck === "valid") {
     // Displays message confirming picture can be added and sets text colour to green
     confirmationText.style.visibility = "visible";
-    confirmationText.textContent = `Picture assigned to ${profileArray[i][0].name}!`;
+    confirmationText.textContent = "Picture assigned to ".concat(profileArray[i][0].name, "!");
     confirmationText.style.color = "#5c9f58";
-    // Hides confirmation message
-    setTimeout(function(){
+    setTimeout(function () {
+      // Hides confirmation message
       confirmationText.style.visibility = "hidden";
-      confirmationText.textContent = `placeholder`;
+      confirmationText.textContent = "placeholder";
       confirmationText.style.color = "black";
     }, 2500);
-  }
-  else if (assignCheck === false && emailCheck === "valid") {
+  } else if (assignCheck === false && emailCheck === "valid") {
     // Displays message saying picture has already been assigned to email and sets text colour to red
     confirmationText.style.visibility = "visible";
-    confirmationText.textContent = `Picture has already been assigned to ${profileArray[i][0].name}.`;
+    confirmationText.textContent = "Picture has already been assigned to ".concat(profileArray[i][0].name, ".");
     confirmationText.style.color = "#FF8080";
-    // Hides confirmation message
-    setTimeout(function(){
+    setTimeout(function () {
+      // Hides confirmation message
       confirmationText.style.visibility = "hidden";
-      confirmationText.textContent = `placeholder`;
+      confirmationText.textContent = "placeholder";
       confirmationText.style.color = "black";
     }, 2500);
-  }
-  else if (emailCheck === "not valid") {
+  } else if (emailCheck === "not valid") {
     // Displays message saying no valid email has been entered and sets text colour to red
     confirmationText.style.visibility = "visible";
-    confirmationText.textContent = `Please enter a valid e-mail address.`;
+    confirmationText.textContent = "Please enter a valid e-mail address.";
     confirmationText.style.color = "#FF8080";
-    // Hides confirmation message
-    setTimeout(function(){
+    setTimeout(function () {
+      // Hides confirmation message
       confirmationText.style.visibility = "hidden";
-      confirmationText.textContent = `placeholder`;
+      confirmationText.textContent = "placeholder";
       confirmationText.style.color = "black";
     }, 2500);
   }
@@ -381,11 +382,12 @@ function assignConfirmation(assignCheck, i){
 // New Profile
 // ----------------------------------------------
 
+// Creates elements for the new profile, i.e. profile page and link in burger menu
 function newProfileLink(x) {
 // New profile list item
 const newBurgerItem = document.createElement("li");
 // Content for new profile list item
-const newBurgerItemContent = `<div class="red-dot-profile"></div><p>${profileArray[x][0].name}</p>`;
+const newBurgerItemContent = "<div class=\"red-dot-profile\"></div><p>".concat(profileArray[x][0].name, "</p>");
 const profileList = document.querySelector('.burger-list');
 const profilePage = document.createElement("div");
 // Clone Profile Header
@@ -410,7 +412,7 @@ let newProfileFooter = profileFooter.cloneNode(true);
   // Adds profile header to profile page
   document.getElementById(profileArray[x][0].name).appendChild(newProfileHeader);
   // Adds content to profile header
-  document.getElementsByClassName("profile-header-inner")[x].innerHTML = `<h3>Pictures assigned to <span class="username-text">${profileChecker[x]}</span></h3>`;
+  document.getElementsByClassName("profile-header-inner")[x].innerHTML = "<h3>Pictures assigned to <span class=\"username-text\">".concat(profileChecker[x], "</span></h3>");
   // Adds profile footer
   document.getElementById(profileArray[x][0].name).appendChild(newProfileFooter);
 }
@@ -419,6 +421,7 @@ let newProfileFooter = profileFooter.cloneNode(true);
 // Create Picture Card
 // ----------------------------------------------
 
+// Creates picture card to hold new picture that's assigned to profile
 function createPictureCard(x){
   // Clone picture card
   let card = document.querySelector('.user-container');
@@ -431,6 +434,7 @@ function createPictureCard(x){
 // Add Picture to Card
 // ----------------------------------------------
 
+// Sets the elements in the picture card to display the picture
 function addPicture(x, y){
 // Declares all variables that represent content and elements in the picture card to be modified, x is the pofile and y is the picture card attached to that profile
 let userImgPhotographer = document.getElementById(profileArray[x][0].name).querySelectorAll('.user-img-photographer')[y];
@@ -456,6 +460,7 @@ let userImg = document.getElementById(profileArray[x][0].name).querySelectorAll(
 
 let burgerItems = document.querySelectorAll('.burger-item');
 
+// Adds button functionality to burger items, to open profile pages
 function displayProfile(){
   // Declares burgerItems to get updated amount
   burgerItems = document.querySelectorAll('.burger-item');
@@ -464,14 +469,14 @@ function displayProfile(){
     burgerItems[i].addEventListener('click', function() {
       for(let j=0;j<profileChecker.length;j++){
         // If the name of the profile matches the profile in the loop
-        if (burgerItems[i].innerText === profileChecker[j]) {
+        if (this.textContent === profileChecker[j]) {
           // Makes the proifle page visible, hides the main page and hides the red dot on the profile in the profile list
           document.getElementById(profileChecker[j]).className = "profile-page visible";
           document.querySelectorAll(".container")[1].style.display = "none";
-          document.querySelectorAll('.red-dot-profile')[i].style.display = "none";
+          document.querySelectorAll('.red-dot-profile')[j].style.display = "none";
         }
         // If the name of the profile doesn't match the profile in the loop
-        else if (burgerItems[i].innerText !== profileChecker[j]) {
+        else if (this.textContent !== profileChecker[j]) {
           // Hides profile pages that don't match the name of the profile
           document.getElementById(profileChecker[j]).className = "profile-page";
         }
@@ -484,6 +489,7 @@ function displayProfile(){
 
 let homeButtons = document.querySelectorAll(".home-btn");
 
+// Adds functionality to buttons to hide profile pages and bring back the home page
 function hideProfile(){
   // Declares homeButtons to get updated amount
   homeButtons = document.querySelectorAll(".home-btn");

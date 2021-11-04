@@ -31,7 +31,7 @@
 @mixin profile-header-footer {
   flex-direction: column;
   padding: 5px;
-  background: #F9E1BD;
+  background: colours.$sand;
   box-shadow: 0px 5px 10px rgb(0 0 0 / 40%);
   border: 1px solid lightgrey;
   border-radius: 5px;

@@ -16,7 +16,9 @@
   },
   "homepage": "https://github.com/RemonJoL/photoApp#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "node-fetch": "^3.0.0",
+    "promise-polyfill": "8.2.1",
     "unsplash-js": "^7.0.15",
     "whatwg-fetch": "^3.6.2"
   },

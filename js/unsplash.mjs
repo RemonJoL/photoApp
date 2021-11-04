@@ -12,7 +12,7 @@ if (!globalThis.fetch) {
 
 import '/node_modules/whatwg-fetch/fetch.js'
 
-// window.fetch(...)
+window.fetch(...)
 
 // --------------------------------------------------------------------------------------
 // URL
