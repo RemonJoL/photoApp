@@ -621,6 +621,12 @@ main {
   border-bottom: 1px solid black;
 }
 
+input::-ms-clear {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
 .popup-confirmation-container {
   text-align: center;
 }

@@ -133,6 +133,9 @@ function getNewImage() {
   });
 }
 
+// Loads picture when page is opened
+document.addEventListener("DOMContentLoaded", getNewImage);
+
 // ----------------------------------------------
 // Email Validation
 // ----------------------------------------------
