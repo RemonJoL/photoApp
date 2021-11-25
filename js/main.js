@@ -134,7 +134,7 @@ function getNewImage() {
 }
 
 // Loads picture when page is opened
-// document.addEventListener("DOMContentLoaded", getNewImage);
+document.addEventListener("DOMContentLoaded", getNewImage);
 
 // ----------------------------------------------
 // Email Validation
@@ -237,17 +237,23 @@ function checkingPicture(arr, val, x) {
       }
   });
 }
+
+// Runs pictureAssign to assign the picture displayed when the Enter key is pressed and prevents the page from refreshing
 document.getElementById("email").addEventListener("keydown", function(){
+  // If the key pressed is Enter
   if (event.keyCode === 13) {
+    // Prevents page from refreshing
     event.preventDefault();
+    // Runs the pictureAssign function
     pictureAssign();
   }
 });
 
 
-// Assigns picture to email address in input
+// Runs pictureAssign to assign the picture displayed when the assign button is clicked
 document.querySelector(".btn-assign").addEventListener("click", pictureAssign);
 
+// Assigns picture to email address in input
 function pictureAssign(){
   if (profileCounter===undefined && emailCheck === "valid") {
     // Sets profile name to email address in input
