@@ -42,8 +42,12 @@ h3 {
 
 .emailDecline {
   color: colours.$red;
-  top: -9px;
+  top: -16px;
   font-size: 0.9rem;
+
+  @media (min-width: 480px) {
+  top: -9px;
+  }
 
   @media (min-width: 768px) {
   top: -3px;
@@ -52,8 +56,12 @@ h3 {
 
 .emailAccept {
   color: colours.$green;
-  bottom: -17px;
+  bottom: -27px;
   font-size: 1.5rem;
+
+  @media (min-width: 480px) {
+  top: -17px;
+  }
 }
 
 label {

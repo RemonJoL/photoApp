@@ -134,7 +134,7 @@ function getNewImage() {
 }
 
 // Loads picture when page is opened
-document.addEventListener("DOMContentLoaded", getNewImage);
+// document.addEventListener("DOMContentLoaded", getNewImage);
 
 // ----------------------------------------------
 // Email Validation
@@ -237,9 +237,18 @@ function checkingPicture(arr, val, x) {
       }
   });
 }
+document.getElementById("email").addEventListener("keydown", function(){
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    pictureAssign();
+  }
+});
+
 
 // Assigns picture to email address in input
-document.querySelector(".btn-assign").addEventListener("click", function(){
+document.querySelector(".btn-assign").addEventListener("click", pictureAssign);
+
+function pictureAssign(){
   if (profileCounter===undefined && emailCheck === "valid") {
     // Sets profile name to email address in input
     profileName = [{name:document.emailForm.emailInput.value}];
@@ -334,7 +343,7 @@ document.querySelector(".btn-assign").addEventListener("click", function(){
     assignCheck = false;
     assignConfirmation(assignCheck)
   }
-});
+};
 
 // ----------------------------------------------
 // New Profile
@@ -348,7 +357,7 @@ function assignConfirmation(assignCheck, i) {
   if (assignCheck === true && emailCheck === "valid") {
     // Displays message confirming picture can be added and sets text colour to green
     confirmationText.style.visibility = "visible";
-    confirmationText.textContent = "Picture assigned to ".concat(profileArray[i][0].name, "!");
+    confirmationText.textContent = "Picture assigned to ".concat(document.getElementById("email").value, "!");
     confirmationText.style.color = "#5c9f58";
     setTimeout(function () {
       // Hides confirmation message
